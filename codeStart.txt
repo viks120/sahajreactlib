@@ -1,0 +1,20 @@
+https://github.com/facebook/create-react-app
+
+--install react packages
+npm install create-react-app -g
+
+OR 
+
+npx create-react-app react-complete-guide
+
+cd react-complete-guide
+
+--start dev server
+npm start
+
+package.json --general dependencies 
+public folder
+    root folder for run server
+    
+    index.html for multiple project --Don't touch for single project
+
