@@ -48,7 +48,15 @@ const app = props => {
   if (showPersons){
     persons = (
       <div>
-        <Person 
+        {personsState.persons.map(person=>{
+          return(
+            <Person 
+            name={person.name} 
+            age={person.age}/>
+          )
+        })}
+      
+        {/* <Person 
           name={personsState.persons[0].name} 
           age={personsState.persons[0].age}/>
         <Person 
@@ -58,7 +66,7 @@ const app = props => {
           changed={nameChangedHandler}>Hobbies: Walking</Person>
         <Person 
           name={personsState.persons[2].name} 
-          age={personsState.persons[2].age}/>
+          age={personsState.persons[2].age}/> */}
       </div>
     )
   }
