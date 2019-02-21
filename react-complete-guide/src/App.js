@@ -13,6 +13,8 @@ const app = props => {
 
   const [otherState, setOtherState] = useState('Other Value');
 
+  const [showPersons, setShowPersons] = useState(false);
+
   const switchNameHandler = (newName) => {
     setPersonsState({
       persons: [
@@ -41,21 +43,32 @@ const app = props => {
     cursor: 'pointer'
   };
 
+  const togglePersonHandler = () =>{
+    const doesShow = showPersons;
+    setShowPersons(
+        !doesShow
+      );
+  }
+
   return (
     <div className="App">
       <h1>Hi, I am react app</h1>
-      <button style={style} onClick={()=>switchNameHandler('Vikk!!')}>Switch Name</button>
-      <Person 
-        name={personsState.persons[0].name} 
-        age={personsState.persons[0].age}/>
-      <Person 
-        name={personsState.persons[1].name} 
-        age={personsState.persons[1].age}
-        click={switchNameHandler.bind(this,'vi!')}
-        changed={nameChangedHandler}>Hobbies: Walking</Person>
-      <Person 
-        name={personsState.persons[2].name} 
-        age={personsState.persons[2].age}/>
+      <button style={style} onClick={()=>togglePersonHandler('Vikk!!')}>Toggle Person</button>
+      { showPersons === true ? 
+        <div>
+          <Person 
+            name={personsState.persons[0].name} 
+            age={personsState.persons[0].age}/>
+          <Person 
+            name={personsState.persons[1].name} 
+            age={personsState.persons[1].age}
+            click={switchNameHandler.bind(this,'vi!')}
+            changed={nameChangedHandler}>Hobbies: Walking</Person>
+          <Person 
+            name={personsState.persons[2].name} 
+            age={personsState.persons[2].age}/>
+          </div> : null
+      }
     </div>
   );
 }
