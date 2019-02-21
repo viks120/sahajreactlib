@@ -15,16 +15,6 @@ const app = props => {
 
   const [showPersons, setShowPersons] = useState(false);
 
-  const switchNameHandler = (newName) => {
-    setPersonsState({
-      persons: [
-        {name: newName, age: 34},
-        {name: "Monu", age: 30},
-        {name: "Mia", age: 0.5}
-      ]
-    })
-  };
-
   const nameChangedHandler = (event) => {
     setPersonsState({
       persons: [
@@ -34,6 +24,15 @@ const app = props => {
       ]
     })
   };
+
+  const deletePersonHandler = (personIndex)=>{
+    //const persons= personsState.persons.slice();
+    const persons = [...personsState.persons];
+    persons.splice(personIndex,1);
+    setPersonsState(
+      {persons : persons}
+    )
+  }
 
   const style = {
     backgroundColor: 'white',
@@ -48,25 +47,14 @@ const app = props => {
   if (showPersons){
     persons = (
       <div>
-        {personsState.persons.map(person=>{
+        {personsState.persons.map((person,index) => {
           return(
             <Person 
+            click={() => deletePersonHandler(index)}
             name={person.name} 
             age={person.age}/>
           )
         })}
-      
-        {/* <Person 
-          name={personsState.persons[0].name} 
-          age={personsState.persons[0].age}/>
-        <Person 
-          name={personsState.persons[1].name} 
-          age={personsState.persons[1].age}
-          click={switchNameHandler.bind(this,'vi!')}
-          changed={nameChangedHandler}>Hobbies: Walking</Person>
-        <Person 
-          name={personsState.persons[2].name} 
-          age={personsState.persons[2].age}/> */}
       </div>
     )
   }
